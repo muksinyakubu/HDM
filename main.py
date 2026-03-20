@@ -65,8 +65,10 @@ probability = model.predict_proba(patient_1)
 
 
 confidence = int(max(probability[0]) * 100)
-print(confidence)
 if prediction[0] == 1 and confidence > 70:
-    print("⚠️ The patient is predicted to have heart disease.")
+        print(f"⚠️ High Risk: Patient likely has heart disease ({confidence}% confidence). Seek medical evaluation.")
 else:
-    print("✅ The patient is predicted NOT to have heart disease.")
+    if confidence > 70:
+        print(f"✅ Low Risk: No heart disease predicted ({confidence}% confidence).")
+    else:
+        print(f"⚠️ Uncertain: No heart disease predicted, but confidence is low ({confidence}%). Consider further evaluation.")
